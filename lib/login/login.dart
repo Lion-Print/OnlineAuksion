@@ -3,7 +3,6 @@ import 'package:auksion/login/passcode_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../resources/colors.dart';
 import '../resources/config.dart';
 
@@ -75,13 +74,13 @@ class _LoginPageState extends State<LoginPage>
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Expanded(child: SizedBox()),
+              SizedBox(height: h*0.03,),
               Container(
                 height: h*0.06,
                 width: w*0.85,
                 decoration: BoxDecoration(
                   color: MyColors.colorOne,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
                   controller: _userController,
@@ -107,7 +106,7 @@ class _LoginPageState extends State<LoginPage>
                 width: w*0.85,
                 decoration: BoxDecoration(
                   color: MyColors.colorOne,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
                   controller: _passwordController,
@@ -120,7 +119,7 @@ class _LoginPageState extends State<LoginPage>
                       color: MyColors.white,
                     ),
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(left: 20),
+                    contentPadding: EdgeInsets.only(left: 10),
                   ),
                 ),
               ),
@@ -130,15 +129,14 @@ class _LoginPageState extends State<LoginPage>
                 width: w*0.85,
                 decoration: BoxDecoration(
                   color: MyColors.colorOne,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextButton(
                   onPressed: (){
                     _login();
                     pushSample();
                   },
-                  child: const Text(
-                    "Login",
+                  child: const Text("Login",
                     style: TextStyle(
                       color: MyColors.white,
                       fontSize: 20,
@@ -146,7 +144,7 @@ class _LoginPageState extends State<LoginPage>
                   ),
                 ),
               ),
-              SizedBox(height: h*0.05,),
+              SizedBox(height: h*0.04),
             ],
           ),
         ),
