@@ -85,7 +85,11 @@ class _LoginPageState extends State<LoginPage>
                 ),
                 child: TextField(
                   controller: _userController,
-                  decoration: InputDecoration(
+                  cursorColor: MyColors.white,
+                  style: const TextStyle(
+                    color: MyColors.white,
+                  ),
+                  decoration: const InputDecoration(
                     hintText: "Login",
                     fillColor: MyColors.white,
                     hintStyle: TextStyle(
@@ -107,7 +111,10 @@ class _LoginPageState extends State<LoginPage>
                 ),
                 child: TextField(
                   controller: _passwordController,
-                  decoration: InputDecoration(
+                  style: const TextStyle(
+                    color: MyColors.white,
+                  ),
+                  decoration: const InputDecoration(
                     hintText: "Password",
                     hintStyle: TextStyle(
                       color: MyColors.white,
@@ -130,7 +137,7 @@ class _LoginPageState extends State<LoginPage>
                     _login();
                     pushSample();
                   },
-                  child: Text(
+                  child: const Text(
                     "Login",
                     style: TextStyle(
                       color: MyColors.white,
