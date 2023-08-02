@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     // InfoUsers(),
     // AddUserPage(),
     // NavSettings()
-    Center(child: Text('Home')),
+    Center(child: Text('dfghrtsdhjryh')),
     Center(child: Text('Home')),
     Center(child: Text('Home')),
     Center(child: Text('Home')),
