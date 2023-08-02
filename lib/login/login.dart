@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:auksion/login/passcode_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import '../resources/colors.dart';
 import '../resources/config.dart';
 
