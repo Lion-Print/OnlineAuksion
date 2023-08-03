@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage>
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: MyColors.colorOne,
+      backgroundColor: MyColors.Mypurple1,
       body:Center(
         child: Container(
           height: h*0.6,
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage>
                 height: h*0.06,
                 width: w*0.85,
                 decoration: BoxDecoration(
-                  color: MyColors.colorOne,
+                  color: MyColors.Mypurple1,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage>
                 height: h*0.06,
                 width: w*0.85,
                 decoration: BoxDecoration(
-                  color: MyColors.colorOne,
+                  color: MyColors.Mypurple1,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage>
                 height: h*0.06,
                 width: w*0.85,
                 decoration: BoxDecoration(
-                  color: MyColors.colorOne,
+                  color: MyColors.Mypurple1,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextButton(

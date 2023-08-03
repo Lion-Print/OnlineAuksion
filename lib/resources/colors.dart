@@ -13,14 +13,12 @@ class MyColors {
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   //6E5CC2
-  static const Color colorOne = Color(0xFF6E5CC2);
+  static const Color Mypurple1 = Color(0xFF6E5CC2);
   //51438E
-  static const Color colorTwo = Color(0xFF51438E);
+  static const Color Mypurple2 = Color(0xFF51438E);
   //D34F4F
-  static const Color colorThree = Color(0xFFD34F4F);
+  static const Color Myred = Color(0xFFD34F4F);
   //48C74E
-  static const Color colorFour = Color(0xFF48C74E);
-  static const Color colorFive = Color(0xFFFFFFFF);
-  static const Color colorSix = Color(0xFF000000);
+  static const Color Mygreen = Color(0xFF48C74E);
 
 }

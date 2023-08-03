@@ -150,7 +150,7 @@ class _PasscodePageState extends State<PasscodeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:MyColors.Mymain1,
+      backgroundColor:MyColors.Mypurple1,
       appBar: AppBar(
         title: const Row(
           children: [
@@ -168,14 +168,14 @@ class _PasscodePageState extends State<PasscodeApp> {
             ),
           ],
         ),
-        backgroundColor: MyColors.Myblue12,
+        backgroundColor: MyColors.Mypurple2,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             name,
-            style: const TextStyle(fontSize: 20.0),
+            style: const TextStyle(fontSize: 20.0, color: MyColors.Mywhite),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           if (error)
@@ -296,7 +296,7 @@ class PasscodeDeleteButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           backgroundColor: MyColors.Mygrey,
-          foregroundColor: Colors.blue,
+          foregroundColor: Colors.purple,
         ),
         child: const Icon(Icons.backspace_outlined, color: MyColors.Myblack),
       ),
@@ -350,7 +350,7 @@ class _PasscodeViewState extends State<PasscodeView> {
     } else if (widget.inputColor == 1) {
       color = Colors.black;
     } else if (widget.inputColor == 2) {
-      color = MyColors.Mymain2;
+      color = Colors.purple;
     } else if (widget.inputColor == 3) {
       color = Colors.red;
     } else {
