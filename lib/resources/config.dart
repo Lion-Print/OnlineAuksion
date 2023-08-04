@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Config{
   baseUrl() {
-    return "http://192.168.0.25:8008";
+    return "https://lionprintspringboot-production.up.railway.app";
   }
 
   //get token shared preferences

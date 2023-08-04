@@ -46,30 +46,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        toolbarHeight: h * 0.08,
-        title: const Row(
-          children: [
-            Text(
-              "Lion",
-              style: TextStyle(color: MyColors.Mywhite,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-            Text(
-              "Print",
-              style: TextStyle(color: MyColors.Mywhite,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: MyColors.Mypurple2,
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -79,31 +57,54 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/icons/home.svg',
+              'assets/svgs/home_icons.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
               color: Colors.white,
-              height: h * 0.03,
+            ),
+            activeIcon: SvgPicture.asset(
+              'assets/svgs/home_icon.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/icons/users.svg',
+              'assets/svgs/report_icons.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
               color: Colors.white,
-              height: h * 0.03,
             ),
-            label: 'Users',
+            activeIcon: SvgPicture.asset(
+              'assets/svgs/report_icon.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            label: 'History',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/icons/add.svg',
+              'assets/svgs/report_icons.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
               color: Colors.white,
-              height: h * 0.03,
             ),
-            label: 'Add',
+            activeIcon: SvgPicture.asset(
+              'assets/svgs/report_icon.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            label: 'camera',
           ),
-
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/svgs/settings_icons.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
+              color: Colors.white,
+            ),
+            activeIcon: SvgPicture.asset(
+              'assets/svgs/settings_icon.svg',
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            label: 'Settings',
+          ),
         ],
         currentIndex: _selectedIndex,
         elevation: 5,

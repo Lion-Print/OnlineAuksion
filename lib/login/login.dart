@@ -16,7 +16,8 @@ class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   late final _userController = TextEditingController();
   late final _passwordController = TextEditingController();
-  void pushSample(){
+
+  void pushSample() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -27,14 +28,11 @@ class _LoginPageState extends State<LoginPage>
 
   Future<void> _login() async {
     final response = await http.post(
-      Uri.parse('${Config().baseUrl()}/auth/login'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+      Uri.parse('${Config().baseUrl()}/api/v1/login'),
+      body: {
+        'username': '+101',
+        'password': '123',
       },
-      body: jsonEncode(<String, String>{
-        'username': _userController.text.toString(),
-        'password': _passwordController.text.toString(),
-      }),
     );
   }
 
@@ -42,16 +40,17 @@ class _LoginPageState extends State<LoginPage>
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: MyColors.Mypurple1,
-      body:Center(
+      backgroundColor: MyColors.colorOne,
+      body: Center(
         child: Container(
-          height: h*0.6,
-          width: w*0.94,
+          height: h * 0.6,
+          width: w * 0.94,
           decoration: BoxDecoration(
             color: MyColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -59,12 +58,16 @@ class _LoginPageState extends State<LoginPage>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: h*0.02,),
+              SizedBox(
+                height: h * 0.02,
+              ),
               SizedBox(
                 height: h * 0.1,
                 child: Image.asset("images/login.png"),
               ),
-              SizedBox(height: h*0.01,),
+              SizedBox(
+                height: h * 0.01,
+              ),
               const Text(
                 "Login",
                 style: TextStyle(
@@ -73,12 +76,14 @@ class _LoginPageState extends State<LoginPage>
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: h*0.03,),
+              SizedBox(
+                height: h * 0.03,
+              ),
               Container(
-                height: h*0.06,
-                width: w*0.85,
+                height: h * 0.06,
+                width: w * 0.85,
                 decoration: BoxDecoration(
-                  color: MyColors.Mypurple1,
+                  color: MyColors.colorOne,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
@@ -99,12 +104,14 @@ class _LoginPageState extends State<LoginPage>
                   ),
                 ),
               ),
-              SizedBox(height: h*0.01,),
+              SizedBox(
+                height: h * 0.01,
+              ),
               Container(
-                height: h*0.06,
-                width: w*0.85,
+                height: h * 0.06,
+                width: w * 0.85,
                 decoration: BoxDecoration(
-                  color: MyColors.Mypurple1,
+                  color: MyColors.colorOne,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
@@ -124,18 +131,19 @@ class _LoginPageState extends State<LoginPage>
               ),
               const Expanded(child: SizedBox()),
               Container(
-                height: h*0.06,
-                width: w*0.85,
+                height: h * 0.06,
+                width: w * 0.85,
                 decoration: BoxDecoration(
-                  color: MyColors.Mypurple1,
+                  color: MyColors.colorOne,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextButton(
-                  onPressed: (){
+                  onPressed: () {
                     _login();
-                    pushSample();
+                    //pushSample();
                   },
-                  child: const Text("Login",
+                  child: const Text(
+                    "Login",
                     style: TextStyle(
                       color: MyColors.white,
                       fontSize: 20,
@@ -143,11 +151,11 @@ class _LoginPageState extends State<LoginPage>
                   ),
                 ),
               ),
-              SizedBox(height: h*0.04),
+              SizedBox(height: h * 0.04),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

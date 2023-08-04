@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(milliseconds: 300), () {
       getToken().then((value) {
         if(value == 'null'){
           Navigator.pushReplacement(
@@ -64,8 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(),
-    );
+    return Center();
   }
 }
