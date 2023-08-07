@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../bottomBar/page2.dart';
+import '../bottomBar/user_info.dart';
 import '../resources/colors.dart';
 var counters;
 
@@ -19,10 +21,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     // InfoUsers(),
     // AddUserPage(),
     // NavSettings()
-    Center(child: Text('dfghrtsdhjryh')),
+    AllUsers(),
+    InfoUsers(),
+    InfoUsers(),
+    InfoUsers(),
+
+
+    /*Center(child: Text('dfghrtsdhjryh')),
     Center(child: Text('Home')),
     Center(child: Text('Home')),
-    Center(child: Text('Home')),
+    Center(child: Text('Home')),*/
   ];
 
   void _onItemTapped(int index) {
@@ -71,24 +79,24 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/svgs/report_icons.svg',
+              'assets/svgs/users.svg',
               height: MediaQuery.of(context).size.height * 0.03,
               color: Colors.white,
             ),
             activeIcon: SvgPicture.asset(
-              'assets/svgs/report_icon.svg',
+              'assets/svgs/users.svg',
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             label: 'History',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/svgs/report_icons.svg',
+              'assets/svgs/box.svg',
               height: MediaQuery.of(context).size.height * 0.03,
               color: Colors.white,
             ),
             activeIcon: SvgPicture.asset(
-              'assets/svgs/report_icon.svg',
+              'assets/svgs/box.svg',
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             label: 'camera',

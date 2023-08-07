@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage>
 
   Future<void> _login() async {
     final response = await http.post(
-      Uri.parse('${Config().baseUrl()}/api/v1/login'),
+      Uri.parse('${Config().baseUrl()}/login'),
       body: {
         'username': '+101',
         'password': '123',
