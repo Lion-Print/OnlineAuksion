@@ -31,8 +31,8 @@ class _LoginPageState extends State<LoginPage>
     final response = await http.post(
       Uri.parse('${Config().baseUrl()}/login'),
       body: {
-        'username': '+101',
-        'password': '123',
+        'username': _userController.text.toString(),
+        'password': _passwordController.text.toString(),
       },
     );
     //print(response.body);

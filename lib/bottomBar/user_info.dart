@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auksion/models/users.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +16,8 @@ class AllUsers extends StatefulWidget {
 
 class _CamPageState extends State<AllUsers> {
 
+  var usersList = [];
+
   Future<void> _getAllData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print(prefs.getString('token'));
@@ -28,9 +31,17 @@ class _CamPageState extends State<AllUsers> {
     );
 
     var data = json.decode(response.body);
-    print(response.body);
-    print(response.statusCode);
+    //print(response.body);
+    //print(response.statusCode);
     if (response.statusCode == 200) {
+      setState(() {
+        //usersList = data;
+        for (var i = 0; i < data.length; i++) {
+          usersList.add(Users.fromJson(data[i]));
+        }
+        print('buuuusususu  ===?>> ${usersList.length}');
+        print('buuuusususu  ===?>> $usersList');
+      });
 
     } else {
 
