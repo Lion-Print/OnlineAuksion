@@ -18,6 +18,7 @@ class _CamPageState extends State<AllUsers> {
   var usersList = [];
 
   Future<void> _getAllData() async {
+    usersList.clear();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print(prefs.getString('token'));
     var token = prefs.getString('token');
@@ -44,6 +45,54 @@ class _CamPageState extends State<AllUsers> {
     } else {
       print('error');
     }
+  }
+
+  Future<void> _addUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(prefs.getString('token'));
+    var token = prefs.getString('token');
+    final response = await http.post(
+      Uri.parse('${Config().baseUrl()}/user'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token'
+      },
+      body: jsonEncode(<Object, Object>{
+        "fullName": "testov test1",
+        "username": "test1",
+        "password": "123",
+        "roleId": 1
+      }),
+    );
+    if (response.statusCode == 200) {
+      _getAllData();
+      showToast(context, 'User added',MyColors.black);
+    } else {
+      print('error');
+      showToast(context, 'Error',MyColors.colorThree);
+    }
+  }
+
+  showToast(BuildContext context, String message,Color color) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        //backgroundColor: MyColors.Myorange,
+        backgroundColor: color,
+        elevation: 10,
+        duration: const Duration(seconds: 2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        behavior: SnackBarBehavior.floating,
+        animation: CurvedAnimation(
+          parent: const AlwaysStoppedAnimation(0.5),
+          curve: Curves.easeInOut,
+        ),
+      ),
+    );
   }
 
   @override
@@ -77,13 +126,70 @@ class _CamPageState extends State<AllUsers> {
             SizedBox(
               height: 20,
             ),
+            Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                    color: MyColors.colorOne,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          color: MyColors.Mymain2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3))
+                    ]),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              color: MyColors.Mymain2,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: const Center(
+                            child: Icon(
+                              Icons.person,
+                              color: MyColors.black,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        const Text(
+                          'Add User',
+                          style: TextStyle(
+                              color: MyColors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        _addUser();
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                        color: MyColors.white,
+                      ),
+                    )
+                  ],
+                )),
             Expanded(
               child: ListView.builder(
                 itemCount: usersList.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                         color: MyColors.colorOne,
                         borderRadius: BorderRadius.circular(10),
@@ -106,7 +212,10 @@ class _CamPageState extends State<AllUsers> {
                                   borderRadius: BorderRadius.circular(50)),
                               child: Center(
                                 child: Text(
-                                  usersList[index].fullName.toString().substring(0, 1),
+                                  usersList[index]
+                                      .fullName
+                                      .toString()
+                                      .substring(0, 1),
                                   style: const TextStyle(
                                       color: MyColors.black,
                                       fontSize: 20,
@@ -121,8 +230,10 @@ class _CamPageState extends State<AllUsers> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width * 0.5,
-                                  height: MediaQuery.of(context).size.height * 0.03,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.03,
                                   child: Text(
                                     usersList[index].fullName.toString(),
                                     style: const TextStyle(
