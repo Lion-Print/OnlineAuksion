@@ -20,42 +20,38 @@ class _CamPageState extends State<AllUsers> {
   Future<void> _getAllData() async {
     usersList.clear();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getString('token'));
-    var token = prefs.getString('token');
     final response = await http.get(
       Uri.parse('${Config().baseUrl()}/user/all'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer ${prefs.getString('token')}'
       },
     );
 
     var data = json.decode(response.body);
-    //print(response.body);
-    //print(response.statusCode);
     if (response.statusCode == 200) {
       setState(() {
-        //usersList = data;
         for (var i = 0; i < data.length; i++) {
           usersList.add(Users.fromJson(data[i]));
         }
-        print('buuuusususu  ===?>> ${usersList.length}');
-        print('buuuusususu  ===?>> $usersList');
+        if (usersList.isEmpty) {
+          showToast(context, 'No data',MyColors.colorThree);
+        }
       });
     } else {
-      print('error');
+      setState(() {
+        showToast(context, 'Error',MyColors.colorThree);
+      });
     }
   }
 
   Future<void> _addUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getString('token'));
-    var token = prefs.getString('token');
     final response = await http.post(
       Uri.parse('${Config().baseUrl()}/user'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer ${prefs.getString('token')}'
       },
       body: jsonEncode(<Object, Object>{
         "fullName": "testov test1",
@@ -66,10 +62,14 @@ class _CamPageState extends State<AllUsers> {
     );
     if (response.statusCode == 200) {
       _getAllData();
-      showToast(context, 'User added',MyColors.black);
+      setState(() {
+        showToast(context, 'User added',MyColors.black);
+      });
+
     } else {
-      print('error');
-      showToast(context, 'Error',MyColors.colorThree);
+      setState(() {
+        showToast(context, 'Error',MyColors.colorThree);
+      });
     }
   }
 
@@ -124,7 +124,7 @@ class _CamPageState extends State<AllUsers> {
         body: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
             Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -133,7 +133,7 @@ class _CamPageState extends State<AllUsers> {
                 decoration: BoxDecoration(
                     color: MyColors.colorOne,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           color: MyColors.Mymain2,
                           blurRadius: 5,
@@ -175,7 +175,7 @@ class _CamPageState extends State<AllUsers> {
                         _addUser();
                       },
                       icon: const Icon(
-                        Icons.add,
+                        Icons.add_circle_outline_sharp,
                         color: MyColors.white,
                       ),
                     )
@@ -193,7 +193,7 @@ class _CamPageState extends State<AllUsers> {
                     decoration: BoxDecoration(
                         color: MyColors.colorOne,
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                               color: MyColors.Mymain2,
                               blurRadius: 5,
@@ -215,7 +215,7 @@ class _CamPageState extends State<AllUsers> {
                                   usersList[index]
                                       .fullName
                                       .toString()
-                                      .substring(0, 1),
+                                      .substring(0, 1).toUpperCase(),
                                   style: const TextStyle(
                                       color: MyColors.black,
                                       fontSize: 20,
@@ -224,7 +224,7 @@ class _CamPageState extends State<AllUsers> {
                               ),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: MediaQuery.of(context).size.width * 0.02,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,14 +264,14 @@ class _CamPageState extends State<AllUsers> {
                           children: [
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.edit,
                                 color: MyColors.white,
                               ),
                             ),
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.delete,
                                 color: MyColors.Myorange,
                               ),
