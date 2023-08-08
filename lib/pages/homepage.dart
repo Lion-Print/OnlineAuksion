@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../bottomBar/page2.dart';
+import '../bottomBar/company.dart';
+import '../bottomBar/page3.dart';
 import '../bottomBar/user_info.dart';
 import '../resources/colors.dart';
 var counters;
@@ -21,11 +22,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     // InfoUsers(),
     // AddUserPage(),
     // NavSettings()
+    Company(),
     AllUsers(),
     InfoUsers(),
     InfoUsers(),
-    InfoUsers(),
-
 
     /*Center(child: Text('dfghrtsdhjryh')),
     Center(child: Text('Home')),
