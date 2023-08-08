@@ -1,14 +1,4 @@
 class Companys {
-  /*"createdBy": 1,
-  "createdDate": "2023-08-07T13:01:58.939+00:00",
-  "modifiedBy": 1,
-  "modifiedDate": "2023-08-07T13:01:58.939+00:00",
-  "id": 1,
-  "name": "Test Company 1",
-  "director": "Alijon Soliyev",
-  "phone": "+9989090099",
-  "suppliers": []*/
-
   late int createdBy;
   late String createdDate;
   late int modifiedBy;

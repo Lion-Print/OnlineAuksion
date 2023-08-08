@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +10,7 @@ import '../resources/config.dart';
 class Company extends StatefulWidget {
   const Company({super.key});
 
+
   @override
   State<Company> createState() => _CamPageState();
 }
@@ -18,12 +18,10 @@ class Company extends StatefulWidget {
 class _CamPageState extends State<Company> {
   var companyList = [];
 
-
-
-  Future<void> _getAllData() async {
+  Future<void> getAllData() async {
     companyList.clear();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getString('token'));
+
     var token = prefs.getString('token');
     final response = await http.get(
       Uri.parse('${Config().baseUrl()}/company/all'),
@@ -39,122 +37,18 @@ class _CamPageState extends State<Company> {
         for (var i = 0; i < data.length; i++) {
           companyList.add(Companys.fromJson(data[i]));
         }
+        if (companyList.isEmpty) {
+          showToast(context, 'No data', MyColors.Mymain2);
+        }
         print('buuuusususu  ===?>> ${companyList.length}');
         print('buuuusususu  ===?>> $companyList');
       });
     } else {
-      print('error');
-    }
-  }
-
-  Future<void> _addCompany() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getString('token'));
-    var token = prefs.getString('token');
-    final response =
-        await http.post(Uri.parse('${Config().baseUrl()}/company'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-              'Authorization': 'Bearer $token'
-            },
-            body: jsonEncode(<Object, Object>{
-              "name": "Test",
-              "director": "Alijon Soliyev",
-              "phone": "+9989090099",
-              "fullName": "Alijon Soliyev",
-              "username": "alibek",
-              "password": "123"
-            }));
-    if (response.statusCode == 200) {
       setState(() {
-        _getAllData();
-        showToast(context, 'User added',MyColors.black);
-      });
-    } else {
-      setState(() {
-        showToast(context, 'Error',MyColors.colorThree);
+        showToast(context, 'Error', MyColors.Mymain2);
       });
     }
   }
-
-  /*{
-    "name": "Test",
-    "director": "Alijon Soliyev",
-    "phone": "+9989090099",
-    "fullName": "Alijon Soliyev",
-    "username": "alibek",
-    "password": "123"
-}*/
-  //add company custom dialog
-  /*Future<void> _showAddCompanyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        _nameController = TextEditingController();
-        _directorController = TextEditingController();
-        _phoneController = TextEditingController();
-        _fullNameController = TextEditingController();
-        _usernameController = TextEditingController();
-        _passwordController = TextEditingController();
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          backgroundColor: MyColors.colorOne,
-          elevation: 10,
-          title: const Text('Add Company'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              mainAxis: Axis.vertical,
-              reverse: false,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 1,
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: MyColors.Mymain2
-                    ),
-                    child: TextField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide.none),
-                        hintText: 'Username',
-                        contentPadding: const EdgeInsets.only(left: 12),
-                      ),
-                    ),
-                  ),
-                ),
-
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Add'),
-              onPressed: () {
-                _addCompany();
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }*/
-
-
 
   showToast(BuildContext context, String message,Color color) {
     final scaffold = ScaffoldMessenger.of(context);
@@ -179,7 +73,7 @@ class _CamPageState extends State<Company> {
   }
   @override
   void initState() {
-    _getAllData();
+    getAllData();
     super.initState();
   }
 
@@ -252,12 +146,10 @@ class _CamPageState extends State<Company> {
                     ),
                     IconButton(
                       onPressed: () {
-                        //_showAddCompanyDialog();
-                        //_addCompany();
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            return CustomDialog(); // Your custom dialog widget
+                            return const CustomDialog(); // Your custom dialog widget
                           },
                         );
                       },
@@ -351,14 +243,14 @@ class _CamPageState extends State<Company> {
                           children: [
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.edit,
                                 color: MyColors.white,
                               ),
                             ),
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.delete,
                                 color: MyColors.Myorange,
                               ),
