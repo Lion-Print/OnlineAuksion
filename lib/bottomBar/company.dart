@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import '../companents/custom_dialog.dart';
 import '../models/company.dart';
 import '../resources/colors.dart';
 import '../resources/config.dart';
@@ -16,6 +17,8 @@ class Company extends StatefulWidget {
 
 class _CamPageState extends State<Company> {
   var companyList = [];
+
+
 
   Future<void> _getAllData() async {
     companyList.clear();
@@ -73,6 +76,85 @@ class _CamPageState extends State<Company> {
       });
     }
   }
+
+  /*{
+    "name": "Test",
+    "director": "Alijon Soliyev",
+    "phone": "+9989090099",
+    "fullName": "Alijon Soliyev",
+    "username": "alibek",
+    "password": "123"
+}*/
+  //add company custom dialog
+  /*Future<void> _showAddCompanyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        _nameController = TextEditingController();
+        _directorController = TextEditingController();
+        _phoneController = TextEditingController();
+        _fullNameController = TextEditingController();
+        _usernameController = TextEditingController();
+        _passwordController = TextEditingController();
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: MyColors.colorOne,
+          elevation: 10,
+          title: const Text('Add Company'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              mainAxis: Axis.vertical,
+              reverse: false,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 1,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: MyColors.Mymain2
+                    ),
+                    child: TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide.none),
+                        hintText: 'Username',
+                        contentPadding: const EdgeInsets.only(left: 12),
+                      ),
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Add'),
+              onPressed: () {
+                _addCompany();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }*/
+
+
 
   showToast(BuildContext context, String message,Color color) {
     final scaffold = ScaffoldMessenger.of(context);
@@ -170,7 +252,14 @@ class _CamPageState extends State<Company> {
                     ),
                     IconButton(
                       onPressed: () {
-                        _addCompany();
+                        //_showAddCompanyDialog();
+                        //_addCompany();
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomDialog(); // Your custom dialog widget
+                          },
+                        );
                       },
                       icon: const Icon(
                         Icons.add_circle_outline_sharp,
@@ -286,3 +375,4 @@ class _CamPageState extends State<Company> {
         ));
   }
 }
+
