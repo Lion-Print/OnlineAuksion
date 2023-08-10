@@ -26,11 +26,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     AllUsers(),
     InfoUsers(),
     InfoUsers(),
-
-    /*Center(child: Text('dfghrtsdhjryh')),
-    Center(child: Text('Home')),
-    Center(child: Text('Home')),
-    Center(child: Text('Home')),*/
   ];
 
   void _onItemTapped(int index) {
@@ -60,7 +55,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: MyColors.Myblue12,
+        backgroundColor: MyColors.colorTwo,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
@@ -86,6 +81,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             activeIcon: SvgPicture.asset(
               'assets/svgs/users.svg',
               height: MediaQuery.of(context).size.height * 0.03,
+              colorFilter: const ColorFilter.mode(
+                Colors.orange,
+                BlendMode.srcATop,
+              ),
             ),
             label: 'History',
           ),
@@ -93,12 +92,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             icon: SvgPicture.asset(
               'assets/svgs/box.svg',
               height: MediaQuery.of(context).size.height * 0.03,
-              color: Colors.white,
+
             ),
             activeIcon: SvgPicture.asset(
               'assets/svgs/box.svg',
               height: MediaQuery.of(context).size.height * 0.03,
-            ),
+              colorFilter: const ColorFilter.mode(
+                Colors.orange,
+                BlendMode.srcATop,
+              ),
+                  ),
             label: 'camera',
           ),
           BottomNavigationBarItem(

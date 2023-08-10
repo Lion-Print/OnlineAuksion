@@ -94,7 +94,7 @@ class _CamPageState extends State<Company> {
               ),
             ],
           ),
-          backgroundColor: MyColors.Myblue12,
+          backgroundColor: MyColors.colorTwo,
         ),
         body: Column(
           children: [
@@ -257,7 +257,7 @@ class _CamPageState extends State<Company> {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   );
@@ -265,6 +265,7 @@ class _CamPageState extends State<Company> {
               ),
             ),
           ],
-        ));
+        ),
+    );
   }
 }

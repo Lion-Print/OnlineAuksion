@@ -121,7 +121,7 @@ class _CamPageState extends State<AllUsers> {
               ),
             ],
           ),
-          backgroundColor: MyColors.Myblue12,
+          backgroundColor: MyColors.colorTwo,
         ),
         body: Column(
           children: [
@@ -214,10 +214,7 @@ class _CamPageState extends State<AllUsers> {
                                   borderRadius: BorderRadius.circular(50)),
                               child: Center(
                                 child: Text(
-                                  usersList[index]
-                                      .fullName
-                                      .toString()
-                                      .substring(0, 1).toUpperCase(),
+                                  usersList[index].fullName.isEmpty ? '' : usersList[index].fullName[0].toUpperCase(),
                                   style: const TextStyle(
                                       color: MyColors.black,
                                       fontSize: 20,

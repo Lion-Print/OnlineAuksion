@@ -22,7 +22,7 @@ class _CamPageState extends State<InfoUsers> {
           ),),
         ],
       ),
-        backgroundColor: MyColors.Myblue12,),
+        backgroundColor: MyColors.colorTwo,),
       body: Container(
         color: MyColors.Mymain1,
         child: Center(

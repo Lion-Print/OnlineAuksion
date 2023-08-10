@@ -71,7 +71,6 @@ class _LoginPageState extends State<LoginPage>
       _showErrorDialog(data['message']);
     }
   }
-
   //show alert dialog with error message
   void _showErrorDialog(String message) {
     showDialog(

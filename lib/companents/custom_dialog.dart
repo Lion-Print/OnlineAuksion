@@ -73,6 +73,7 @@ class _CustomDialogState extends State<CustomDialog> {
         _passwordController.clear();
         showToast(context, "Muvaffaqiyatli qo'shildi", MyColors.Myorange);
       });
+
     } else {
       setState(() {
         showToast(context, "Xatolik yuz berdi", MyColors.colorThree);
@@ -276,7 +277,6 @@ class _CustomDialogState extends State<CustomDialog> {
                       ),
                       TextButton(
                         onPressed: () {
-
                           if (_nameController.text.isEmpty ||
                               _directorController.text.isEmpty ||
                               _phoneController.text.isEmpty ||
@@ -287,7 +287,6 @@ class _CustomDialogState extends State<CustomDialog> {
                             return;
                           }
                           _addCompany();
-
                         },
                         child: const Text(
                           'Add',
@@ -305,5 +304,4 @@ class _CustomDialogState extends State<CustomDialog> {
       ),
     );
   }
-
 }
