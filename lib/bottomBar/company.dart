@@ -21,7 +21,6 @@ class _CamPageState extends State<Company> {
   Future<void> getAllData() async {
     companyList.clear();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     var token = prefs.getString('token');
     final response = await http.get(
       Uri.parse('${Config().baseUrl()}/company/all'),
@@ -164,6 +163,7 @@ class _CamPageState extends State<Company> {
               child: ListView.builder(
                 itemCount: companyList.length,
                 itemBuilder: (context, index) {
+                  final company = companyList[index];
                   return Container(
                     margin:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -191,10 +191,11 @@ class _CamPageState extends State<Company> {
                                   borderRadius: BorderRadius.circular(50)),
                               child: Center(
                                 child: Text(
-                                  companyList[index]
-                                      .name
-                                      .toString()
-                                      .substring(0, 1).toUpperCase(),
+                                company.name.isEmpty
+                                ? ''
+                                    : company.name
+                                    .toString()
+                                    .substring(0, 1).toUpperCase(),
                                   style: const TextStyle(
                                       color: MyColors.black,
                                       fontSize: 20,
@@ -214,7 +215,7 @@ class _CamPageState extends State<Company> {
                                   height:
                                   MediaQuery.of(context).size.height * 0.03,
                                   child: Text(
-                                    companyList[index].name.toString(),
+                                    company.name.toString(),
                                     style: const TextStyle(
                                         color: MyColors.white,
                                         fontSize: 18,
@@ -222,14 +223,14 @@ class _CamPageState extends State<Company> {
                                   ),
                                 ),
                                 Text(
-                                  companyList[index].director.toString(),
+                                  company.director.toString(),
                                   style: const TextStyle(
                                       color: MyColors.white,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  companyList[index].phone.toString(),
+                                  company.phone.toString(),
                                   style: const TextStyle(
                                       color: MyColors.white,
                                       fontSize: 15,
@@ -267,4 +268,3 @@ class _CamPageState extends State<Company> {
         ));
   }
 }
-

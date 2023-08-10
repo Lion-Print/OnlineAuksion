@@ -1,8 +1,8 @@
 import 'dart:convert';
-
-import 'package:auksion/bottomBar/company.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import '../resources/colors.dart';
 import '../resources/config.dart';
@@ -63,7 +63,6 @@ class _CustomDialogState extends State<CustomDialog> {
           "password": _passwordController.text.toString(),
         }));
     if (response.statusCode == 200) {
-
       setState(() {
         Navigator.pop(context);
         _directorController.clear();
@@ -102,7 +101,7 @@ class _CustomDialogState extends State<CustomDialog> {
       ),
     );
   }
-
+  
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
@@ -195,7 +194,7 @@ class _CustomDialogState extends State<CustomDialog> {
                       ),
                     ),
                   ),
-                  SizedBox(height: h * 0.02),
+                  SizedBox(height: h * 0.01),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Container(
@@ -287,8 +286,8 @@ class _CustomDialogState extends State<CustomDialog> {
                             showToast(context, 'Please fill all fields', MyColors.colorThree);
                             return;
                           }
-
                           _addCompany();
+
                         },
                         child: const Text(
                           'Add',
@@ -306,4 +305,5 @@ class _CustomDialogState extends State<CustomDialog> {
       ),
     );
   }
+
 }
